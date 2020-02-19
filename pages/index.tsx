@@ -82,10 +82,7 @@ const CustomForm = ({ status, message, onValidated }) => {
         </div>
       )}
       {status === "success" && (
-        <div
-          className="text-green-700 text-center w-full"
-          dangerouslySetInnerHTML={{ __html: message }}
-        >
+        <div className="text-green-700 text-center w-full">
           Success! Welcome to the Squad!
         </div>
       )}
