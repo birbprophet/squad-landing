@@ -3,7 +3,8 @@ import App from "next/app";
 
 import "../css/tailwind.css";
 import "../css/styles.css";
-import "typeface-roboto";
+import "typeface-montserrat";
+import "typeface-hind";
 
 import FirebaseProvider from "../components/FirebaseProvider";
 
