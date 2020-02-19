@@ -8,6 +8,13 @@ const Home = () => {
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
+        <script
+          id="mcjs"
+          dangerouslySetInnerHTML={{
+            __html: `
+            !function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/50e805064958502d88ae939bc/5c9f3c37fc62ab9ca0b9af3a7.js");`
+          }}
+        />
       </Head>
       <Div100vh>
         <div className="flex flex-col h-full">
