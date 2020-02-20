@@ -12,7 +12,24 @@ const Home = () => {
     <>
       <Head>
         <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <Div100vh>
         <div className="flex flex-col h-full">
@@ -21,45 +38,64 @@ const Home = () => {
           </div>
           <div className="px-8 h-full flex flex-col">
             <div className="flex-1 flex flex-col">
-              <div id="text" className="my-auto">
+              <div id="text" className="my-auto" style={{ maxWidth: "640px" }}>
                 <div
                   id="title"
-                  className="font-title font-extrabold text-3xl md:text-6xl"
+                  className="font-title font-extrabold text-4xl sm:text-5xl md:text-6xl"
                 >
                   Find your{" "}
-                  <span className="text-blue-500 border-b-4 border-blue-500 text-3xl md:text-6xl md:border-b-8">
+                  <span className="text-blue-500 border-b-4 border-blue-500 text-4xl sm:text-5xl md:text-6xl sm:border-b-8">
                     squad
                   </span>
                   <br />
                   Get fit together
                 </div>
-                <p id="subtitle" className="text-lg mt-4 md:mt-8 md:text-2xl">
-                  Workouts can be a great way to meet new people with common
+                <p
+                  id="subtitle"
+                  className="text-lg mt-4 md:mt-8 sm:text-xl md:text-2xl"
+                >
+                  Working out is a great way to meet new people with common
                   interests.&nbsp;
-                  <span className="hidden md:inline-flex">
+                  <span className="hidden sm:inline-flex">
                     Find your squad while doing the activities you love.
                   </span>
                 </p>
+                <div className="mt-16" style={{ maxWidth: "640px" }}>
+                  <MailchimpSubscribe
+                    url={url}
+                    render={({ subscribe, status }) => (
+                      <CustomForm
+                        status={status}
+                        onValidated={formData => subscribe(formData)}
+                      />
+                    )}
+                  />
+                </div>
               </div>
             </div>
-            <MailchimpSubscribe
-              url={url}
-              render={({ subscribe, status, message }) => (
-                <CustomForm
-                  status={status}
-                  message={message}
-                  onValidated={formData => subscribe(formData)}
-                />
-              )}
-            />
           </div>
         </div>
       </Div100vh>
+      <div className="flex flex-col">
+        <div className="text-center py-12 sm:py-16 w-full flex bg-gray-100">
+          <div className="m-auto">
+            <div className="font-title text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">
+              Working out can be a social experience
+            </div>
+            <div className="mt-4 px-8 text-sm sm:text-base md:text-lg lg:text-xl">
+              You want to hang out with friends, meet new people, and do your
+              workout.
+              <br />
+              Squad helps you to do it all at once.
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
 
-const CustomForm = ({ status, message, onValidated }) => {
+const CustomForm = ({ status, onValidated }) => {
   let email;
   const submit = () =>
     email &&
