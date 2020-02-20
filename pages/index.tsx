@@ -30,12 +30,18 @@ const Home = () => {
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm_share", b="https://embed.typeform.com/"; if(!gi.call(d,id)){ js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })()`
+          }}
+        ></script>
       </Head>
       <Div100vh>
         <div className="flex flex-col h-full">
           <div id="topbar" className="flex px-8 py-4 shadow-md">
             <div className="text-xl font-black font-title">squad</div>
           </div>
+
           <div className="px-8 sm:px-16 md:px-20 lg:px-24 h-full flex flex-col">
             <div className="flex-1 flex flex-col">
               <div id="text" className="my-auto" style={{ maxWidth: "640px" }}>
@@ -61,15 +67,15 @@ const Home = () => {
                   </span>
                 </p>
                 <div className="mt-16" style={{ maxWidth: "640px" }}>
-                  <MailchimpSubscribe
-                    url={url}
-                    render={({ subscribe, status }) => (
-                      <CustomForm
-                        status={status}
-                        onValidated={formData => subscribe(formData)}
-                      />
-                    )}
-                  />
+                  <a
+                    className="typeform-share button bg-blue-500 text-white font-title font-bold px-8 py-4 rounded-full text-xl"
+                    href="https://ben964525.typeform.com/to/WCdkMd"
+                    data-mode="popup"
+                    data-hide-footer
+                    data-submit-close-delay="4"
+                  >
+                    I'm Interested
+                  </a>
                 </div>
               </div>
             </div>
@@ -169,15 +175,17 @@ const Home = () => {
           <div className="font-title font-bold text-xl mb-2">
             Want to find out more?
           </div>
-          <MailchimpSubscribe
-            url={url}
-            render={({ subscribe, status }) => (
-              <CustomForm
-                status={status}
-                onValidated={formData => subscribe(formData)}
-              />
-            )}
-          />
+          <div className="mt-2" style={{ maxWidth: "640px" }}>
+            <MailchimpSubscribe
+              url={url}
+              render={({ subscribe, status }) => (
+                <CustomForm
+                  status={status}
+                  onValidated={formData => subscribe(formData)}
+                />
+              )}
+            />
+          </div>
         </div>
       </div>
       <div className="bg-gray-200 px-16 py-16 mt-16 sm:flex">
