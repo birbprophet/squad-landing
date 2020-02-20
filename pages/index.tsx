@@ -103,7 +103,7 @@ const Home = () => {
               1
             </div>
             <div
-              className="h-32 mt-4 sm:mt-3 sm:ml-6"
+              className="h-32 mt-4 sm:mt-3 sm:ml-6 mx-auto"
               style={{ maxWidth: "320px" }}
             >
               <div className="text-2xl sm:text-3xl font-title font-bold text-center sm:text-left">
@@ -128,7 +128,7 @@ const Home = () => {
               2
             </div>
             <div
-              className="h-32 mt-4 sm:mt-3 sm:ml-6"
+              className="h-32 mt-4 sm:mt-3 sm:ml-6 mx-auto"
               style={{ maxWidth: "320px" }}
             >
               <div className="text-2xl sm:text-3xl font-title font-bold text-center sm:text-left">
@@ -152,7 +152,7 @@ const Home = () => {
               3
             </div>
             <div
-              className="h-32 mt-4 sm:mt-3 sm:ml-6"
+              className="h-32 mt-4 sm:mt-3 sm:ml-6 mx-auto"
               style={{ maxWidth: "320px" }}
             >
               <div className="text-2xl sm:text-3xl font-title font-bold text-center sm:text-left">
