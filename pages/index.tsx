@@ -1,17 +1,18 @@
 import React from "react";
 import Head from "next/head";
+import Link from "next/link";
 import Div100vh from "react-div-100vh";
 import { FiMail } from "react-icons/fi";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 
-const url =
+const MAILCHIMP_URL =
   "https://fitness.us4.list-manage.com/subscribe/post?u=50e805064958502d88ae939bc&id=36c73f6366";
 
 const Home = () => {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>Squad - find your squad, get fit together</title>
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -39,7 +40,9 @@ const Home = () => {
       <Div100vh>
         <div className="flex flex-col h-full">
           <div id="topbar" className="flex px-8 py-4 shadow-md">
-            <div className="text-xl font-black font-title">squad</div>
+            <div className="text-xl font-black font-title">
+              <Link href="/">squad</Link>
+            </div>
           </div>
 
           <div className="px-8 sm:px-16 md:px-20 lg:px-24 h-full flex flex-col">
@@ -60,7 +63,7 @@ const Home = () => {
                   id="subtitle"
                   className="text-lg mt-4 md:mt-8 sm:text-xl md:text-2xl"
                 >
-                  Working out is a great way to meet new people with common
+                  Workouts can be a great way to meet new people with common
                   interests.&nbsp;
                   <span className="hidden sm:inline-flex">
                     Find your squad while doing the activities you love.
@@ -177,7 +180,7 @@ const Home = () => {
           </div>
           <div className="mt-2" style={{ maxWidth: "640px" }}>
             <MailchimpSubscribe
-              url={url}
+              url={MAILCHIMP_URL}
               render={({ subscribe, status }) => (
                 <CustomForm
                   status={status}
