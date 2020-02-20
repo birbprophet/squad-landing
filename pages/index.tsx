@@ -41,7 +41,9 @@ const Home = () => {
         <div className="flex flex-col h-full">
           <div id="topbar" className="flex px-8 py-4 shadow-md">
             <div className="text-xl font-black font-title">
-              <Link href="/">squad</Link>
+              <Link href="/">
+                <a>squad</a>
+              </Link>
             </div>
           </div>
 
