@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Head from "next/head";
 import Div100vh from "react-div-100vh";
 import { FiMail } from "react-icons/fi";
@@ -72,7 +72,7 @@ const Home = () => {
                     href="https://ben964525.typeform.com/to/WCdkMd"
                     data-mode="popup"
                     data-hide-footer
-                    data-submit-close-delay="4"
+                    data-submit-close-delay="2"
                   >
                     I'm Interested
                   </a>
