@@ -63,7 +63,7 @@ const Home = () => {
                   className="font-title font-extrabold text-4xl sm:text-5xl md:text-6xl"
                 >
                   Find your{" "}
-                  <span className="text-blue-500 border-b-4 border-blue-500 text-4xl sm:text-5xl md:text-6xl sm:border-b-8">
+                  <span className="text-blue-500 border-b-4 border-blue-700 text-4xl sm:text-5xl md:text-6xl sm:border-b-8">
                     squad
                   </span>
                   <br />
@@ -81,7 +81,7 @@ const Home = () => {
                 </p>
                 <div className="mt-16" style={{ maxWidth: "640px" }}>
                   <a
-                    className="typeform-share button bg-blue-500 text-white font-title font-bold px-8 py-4 rounded-full text-xl"
+                    className="typeform-share button bg-blue-700 text-white font-title font-bold px-8 py-4 rounded-full text-xl"
                     href="https://ben964525.typeform.com/to/WCdkMd"
                     data-mode="popup"
                     data-hide-footer
