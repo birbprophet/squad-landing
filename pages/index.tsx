@@ -54,43 +54,62 @@ const Home = () => {
               </Link>
             </div>
           </div>
-
-          <div className="px-8 sm:px-16 md:px-20 lg:px-24 h-full flex flex-col">
-            <div className="flex-1 flex flex-col">
-              <div id="text" className="my-auto" style={{ maxWidth: "640px" }}>
-                <div
-                  id="title"
-                  className="font-title font-extrabold text-4xl sm:text-5xl md:text-6xl"
-                >
-                  Find your{" "}
-                  <span className="text-blue-700 border-b-4 border-blue-700 text-4xl sm:text-5xl md:text-6xl sm:border-b-8">
-                    squad
-                  </span>
-                  <br />
-                  Get fit together
-                </div>
-                <p
-                  id="subtitle"
-                  className="text-lg mt-4 md:mt-8 sm:text-xl md:text-2xl"
-                >
-                  Workouts can be a great way to meet new people with common
-                  interests.&nbsp;
-                  <span className="hidden sm:inline-flex">
-                    Find your squad while doing the activities you love.
-                  </span>
-                </p>
-                <div className="mt-16" style={{ maxWidth: "640px" }}>
-                  <a
-                    className="typeform-share button bg-blue-700 text-white font-title font-bold px-8 py-4 rounded-full text-xl"
-                    href="https://ben964525.typeform.com/to/WCdkMd"
-                    data-mode="popup"
-                    data-hide-footer
-                    data-submit-close-delay="2"
+          <div className="h-full flex flex-col">
+            <div className="flex-1 flex px-8 sm:px-16 md:pl-20 lg:pl-24">
+              <div
+                id="title-section"
+                className="my-auto flex flex-shrink-0"
+                style={{ maxWidth: "640px" }}
+              >
+                <div className="flex flex-col flex-1">
+                  <div
+                    id="title"
+                    className="font-title font-extrabold text-4xl sm:text-5xl md:text-6xl"
                   >
-                    I'm Interested
-                  </a>
+                    Find your{" "}
+                    <span className="text-blue-700 border-b-4 border-blue-700 text-4xl sm:text-5xl md:text-6xl sm:border-b-8">
+                      squad
+                    </span>
+                    <br />
+                    Get fit together
+                  </div>
+                  <p
+                    id="subtitle"
+                    className="text-lg mt-4 md:mt-8 sm:text-xl md:text-2xl"
+                  >
+                    Workouts can be a great way to meet new people with common
+                    interests.&nbsp;
+                    <span className="hidden sm:inline-flex">
+                      Find your squad while doing the activities you love.
+                    </span>
+                  </p>
+                  <div className="mt-16" style={{ maxWidth: "640px" }}>
+                    <a
+                      className="typeform-share button bg-blue-700 text-white font-title font-bold px-8 py-4 rounded-full text-xl hover:bg-blue-600"
+                      href="https://ben964525.typeform.com/to/WCdkMd"
+                      data-mode="popup"
+                      data-hide-footer
+                      data-submit-close-delay="2"
+                    >
+                      I'm Interested
+                    </a>
+                  </div>
                 </div>
               </div>
+            </div>
+            <div
+              className="absolute w-full h-full"
+              style={{ backgroundColor: "#eef2f5", zIndex: -10 }}
+            />
+            <div
+              className="absolute right-0 flex h-full lg:-mr-24 xl:-mr-0 hidden lg:flex"
+              style={{ width: "60%", zIndex: -10 }}
+            >
+              <img
+                src="assets/images/squad-mockup.png"
+                alt=""
+                className="my-auto"
+              />
             </div>
           </div>
         </div>
