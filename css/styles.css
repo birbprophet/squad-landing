@@ -1,9 +1,14 @@
 html, body {
   font-family: Hind, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Roboto, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    overflow-x: hidden;
 }
 
 button:focus {
   outline: none;
+}
+
+.typeform-share {
+    width: 100% !important;
 }
 
 .font-title {

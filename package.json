@@ -5,17 +5,22 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "build:styles": "postcss css/tailwind.css -o css/index.css"
   },
   "dependencies": {
+    "@typeform/embed": "^0.16.0",
     "firebase": "^7.8.2",
+    "framer-motion": "^1.8.4",
     "next": "9.2.2",
-    "next-fonts": "^1.0.3",
     "react": "16.12.0",
     "react-div-100vh": "^0.3.8",
     "react-dom": "16.12.0",
     "react-icons": "^3.9.0",
+    "react-lazyload": "^2.6.5",
     "react-mailchimp-subscribe": "^2.1.0",
+    "react-responsive": "^8.0.3",
+    "react-typeform-embed": "^0.2.1",
     "tailwindcss": "^1.2.0",
     "typeface-hind": "0.0.72",
     "typeface-montserrat": "0.0.75"
@@ -26,8 +31,17 @@
     "@types/react": "^16.9.20",
     "@zeit/next-css": "^1.0.1",
     "autoprefixer": "^9.7.4",
+    "imagemin-mozjpeg": "^8.0.0",
+    "imagemin-pngquant": "^8.0.0",
+    "next-compose-plugins": "^2.2.0",
+    "next-fonts": "^1.0.3",
+    "next-optimized-images": "^2.5.5",
+    "next-purgecss": "^3.1.2",
+    "postcss-cli": "^7.1.0",
     "prettier": "^1.19.1",
+    "responsive-loader": "^1.2.0",
     "rimraf": "^3.0.2",
+    "sharp": "^0.24.1",
     "typescript": "^3.7.5"
   }
 }

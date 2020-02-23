@@ -1,7 +1,11 @@
+declare global {
+  interface Window { analytics: any; }
+}
+
 import React from "react";
 import App from "next/app";
 
-import "../css/tailwind.css";
+import "../css/index.css";
 import "../css/styles.css";
 import "typeface-montserrat";
 import "typeface-hind";

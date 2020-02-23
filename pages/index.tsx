@@ -1,119 +1,269 @@
-import React from "react";
-import Head from "next/head";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Div100vh from "react-div-100vh";
+import { useMediaQuery } from "react-responsive";
 import { FiMail } from "react-icons/fi";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
+import LazyLoad, { forceCheck } from "react-lazyload";
+import { motion } from "framer-motion";
+import { ReactTypeformEmbed } from "react-typeform-embed";
+
+import IndexHeader from "../components/IndexHeader";
 
 const MAILCHIMP_URL =
   "https://fitness.us4.list-manage.com/subscribe/post?u=50e805064958502d88ae939bc&id=36c73f6366";
 
 const Home = () => {
+  const [state, setState] = useState({
+    userEmail: "",
+    showEmailError: false,
+    typeformOpen: false
+  });
+
+  const isXs = useMediaQuery({ maxWidth: 480 });
+  const isSm = useMediaQuery({ maxWidth: 640 });
+  const isMd = useMediaQuery({ maxWidth: 768 });
+  const isLg = useMediaQuery({ maxWidth: 1024 });
+  const isXl = useMediaQuery({ maxWidth: 1280 });
+
+  const buttonRef = useRef(null);
+
+  forceCheck();
+  window.analytics.page("Index");
+
+  const handleUserEmailOnChange = e => {
+    setState({ ...state, userEmail: e.target.value });
+  };
+
+  const emailIsValid = state.userEmail.match(
+    /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]+$/i
+  );
+
+  const handleGetStartedOnClick = () => {
+    window.analytics.identify(state.userEmail, {
+      clickedTypeform: true
+    });
+    if (!emailIsValid) {
+      setState({ ...state, showEmailError: true });
+    } else {
+      setState({ ...state, typeformOpen: true });
+    }
+  };
+
+  const handleTypeformOnSubmit = () => {
+    window.analytics.identify(state.userEmail, {
+      completedTypeform: true
+    });
+  };
+
+  useEffect(() => {
+    if (emailIsValid && state.showEmailError) {
+      setState({ ...state, showEmailError: false });
+    }
+  }, [emailIsValid, state.showEmailError]);
+
+  useEffect(() => {
+    if (state.typeformOpen) {
+      buttonRef.current.typeform.open();
+    }
+  }, [state.typeformOpen]);
+
   return (
     <>
-      <Head>
-        <title>Squad - find your squad, get fit together</title>
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
+      <IndexHeader siteTitle="Squad - Find people to work out together" />
+      {state.typeformOpen && (
+        <ReactTypeformEmbed
+          url={`https://ben964525.typeform.com/to/WCdkMd?email=${state.userEmail}&source=mainsite`}
+          popup
+          hideHeaders
+          hideFooter
+          mode="popup"
+          onSubmit={handleTypeformOnSubmit}
+          ref={buttonRef}
         />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/site.webmanifest" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm_share", b="https://embed.typeform.com/"; if(!gi.call(d,id)){ js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })()`
-          }}
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
-            analytics.load("rc4dK0bDR9lfm7R0gUU4m0igIrJYsOpb");
-            analytics.page();
-            }}();`
-          }}
-        ></script>
-      </Head>
+      )}
       <Div100vh>
         <div className="flex flex-col h-full">
-          <div id="topbar" className="flex px-8 py-4 shadow-md">
-            <div className="text-xl font-black font-title">
-              <Link href="/">
-                <a>squad</a>
-              </Link>
+          <div id="topbar" className="flex px-8 py-4">
+            <div
+              className="
+              text-2xl font-black font-title
+              sm:text-3xl
+            "
+            >
+              <motion.div
+                whileHover={{
+                  color: "#2B6CB0",
+                  borderColor: "#2B6CB0"
+                }}
+                whileTap={{
+                  color: "#2B6CB0",
+                  borderColor: "#2B6CB0"
+                }}
+              >
+                <Link href="/">
+                  <a>squad</a>
+                </Link>
+              </motion.div>
             </div>
+            <div className="flex-1" />
+            {/* <div>
+              {isXs ? "XS" : isSm ? "SM" : isMd ? "MD" : isLg ? "LG" : "XL"}
+            </div> */}
           </div>
           <div className="h-full flex flex-col">
-            <div className="flex-1 flex px-8 sm:px-16 md:pl-20 lg:pl-24">
+            <div className="flex-1 flex">
               <div
                 id="title-section"
-                className="my-auto flex flex-shrink-0"
-                style={{ maxWidth: "640px" }}
+                className="m-auto flex max-w-full items-center"
               >
                 <div className="flex flex-col flex-1">
                   <div
                     id="title"
-                    className="font-title font-extrabold text-4xl sm:text-5xl md:text-6xl"
+                    className="
+                    font-title font-extrabold 
+                    text-5xl text-center leading-none
+                    sm:text-6xl
+                    md:text-5xl
+                    lg:text-6xl
+                    "
                   >
-                    Find your{" "}
-                    <span className="text-blue-700 border-b-4 border-blue-700 text-4xl sm:text-5xl md:text-6xl sm:border-b-8">
-                      squad
-                    </span>
-                    <br />
-                    Get fit together
+                    <div>Find people</div>
+                    <div className="mt-1">to work out</div>
+                    <div className="mt-1 text-blue-700">
+                      <motion.span
+                        className="border-b-8 border-white cursor-default"
+                        whileHover={{
+                          color: "#3182CE",
+                          borderColor: "#3182CE"
+                        }}
+                        whileTap={{
+                          color: "#3182CE",
+                          borderColor: "#3182CE"
+                        }}
+                      >
+                        together
+                      </motion.span>
+                    </div>
                   </div>
                   <p
                     id="subtitle"
-                    className="text-lg mt-4 md:mt-8 sm:text-xl md:text-2xl"
+                    className="
+                    text-lg mt-8 text-center 
+                    sm:text-xl
+                    md:mt-8 md:text-lg
+                    lg:text-2xl"
                   >
-                    Workouts can be a great way to meet new people with common
-                    interests.&nbsp;
-                    <span className="hidden sm:inline-flex">
-                      Find your squad while doing the activities you love.
-                    </span>
+                    Organising activities is hard — so don't.
+                    <br />
+                    Choose your activity & preferred crowd, <br />
+                    then leave the rest to us.
                   </p>
-                  <div className="mt-16" style={{ maxWidth: "640px" }}>
-                    <a
-                      className="typeform-share button bg-blue-700 text-white font-title font-bold px-8 py-4 rounded-full text-xl hover:bg-blue-600"
-                      href="https://ben964525.typeform.com/to/WCdkMd"
-                      data-mode="popup"
-                      data-hide-footer
-                      data-submit-close-delay="2"
+                  <div className="mt-8 mb-12 w-full">
+                    <input
+                      type="email"
+                      placeholder="Your email address"
+                      className="
+                      border-2 border-black pt-3 pb-2 rounded-lg w-full text-lg text-center focus:outline-none focus:border-blue-700 focus:placeholder-blue-200
+                      "
+                      onChange={handleUserEmailOnChange}
+                      value={state.userEmail}
+                    />
+                    <div className="mt-4">
+                      <motion.button
+                        className="
+                        bg-blue-700 text-white font-extrabold pt-3 pb-2 rounded-lg w-full text-lg text-center focus:outline-none
+                        "
+                        whileHover={{
+                          backgroundColor: "#3182CE"
+                        }}
+                        whileTap={{
+                          backgroundColor: "#000"
+                        }}
+                        onClick={handleGetStartedOnClick}
+                      >
+                        Get Started
+                      </motion.button>
+                    </div>
+                    <div className="mt-6 text-red-700 text-sm text-center h-8">
+                      {state.showEmailError ? (
+                        <>Oops, you might have a typo there...</>
+                      ) : (
+                        <>&nbsp;</>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="hidden md:flex lg:hidden flex-col items-center"
+                  style={{
+                    marginRight: "-7.5%",
+                    paddingLeft: "5%",
+                    marginBottom: "10%",
+                    marginLeft: "5%"
+                  }}
+                >
+                  <LazyLoad height={400}>
+                    <motion.div
+                      whileHover={{
+                        scale: 1.05
+                      }}
                     >
-                      I'm Interested
-                    </a>
+                      <img
+                        src={require("../public/assets/images/squad-yuqing-find-out.png?resize&size=400")}
+                      />
+                    </motion.div>
+                  </LazyLoad>
+                  <div className="text text-gray-500">
+                    Find out how you can do the same
+                  </div>
+                </div>
+                <div
+                  className="hidden lg:flex flex-col items-center"
+                  style={{
+                    marginRight: "-7.5%",
+                    paddingLeft: "5%",
+                    marginBottom: "10%",
+                    marginLeft: "5%"
+                  }}
+                >
+                  <LazyLoad height={450}>
+                    <motion.div
+                      whileHover={{
+                        scale: 1.05
+                      }}
+                    >
+                      <img
+                        src={require("../public/assets/images/squad-yuqing-find-out.png?resize&size=450")}
+                      />
+                    </motion.div>
+                  </LazyLoad>
+                  <div className="text text-gray-500">
+                    Find out how you can do the same
                   </div>
                 </div>
               </div>
             </div>
-            <div
-              className="absolute w-full h-full"
-              style={{ backgroundColor: "#eef2f5", zIndex: -10 }}
-            />
-            <div
-              className="absolute right-0 flex h-full lg:-mr-24 xl:-mr-0 hidden lg:flex"
-              style={{ width: "60%", zIndex: -10 }}
-            >
-              <img
-                src="assets/images/squad-mockup.png"
-                alt=""
-                className="my-auto"
-              />
-            </div>
           </div>
         </div>
       </Div100vh>
+      <div className="flex flex-col md:hidden items-center m-auto pt-8 pb-12">
+        <LazyLoad height={400}>
+          <motion.div
+            whileHover={{
+              scale: 1.05
+            }}
+          >
+            <img
+              src={require("../public/assets/images/squad-yuqing-find-out.png?resize&size=400")}
+              className="fadein"
+            />
+          </motion.div>
+        </LazyLoad>
+        <div className="text text-gray-500">
+          Find out how you can do the same
+        </div>
+      </div>
       <div className="flex flex-col">
         <div className="text-center py-12 sm:py-16 w-full flex bg-gray-100">
           <div className="m-auto">
