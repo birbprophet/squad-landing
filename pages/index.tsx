@@ -29,7 +29,6 @@ const Home = () => {
   const buttonRef = useRef(null);
 
   forceCheck();
-  window.analytics.page("Index");
 
   const handleUserEmailOnChange = e => {
     setState({ ...state, userEmail: e.target.value });
@@ -55,6 +54,12 @@ const Home = () => {
       completedTypeform: true
     });
   };
+
+  useEffect(() => {
+    if (window !== undefined) {
+      window.analytics.page("Index");
+    }
+  }, []);
 
   useEffect(() => {
     if (emailIsValid && state.showEmailError) {
