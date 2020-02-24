@@ -2,8 +2,10 @@ declare global {
   interface Window { analytics: any; }
 }
 
+
 import React from "react";
 import App from "next/app";
+
 
 import "../css/index.css";
 import "../css/styles.css";
@@ -12,13 +14,15 @@ import "typeface-hind";
 
 import FirebaseProvider from "../components/FirebaseProvider";
 
+
 class NextApp extends App {
+
   render() {
-    const { Component: Page, pageProps } = this.props;
+    const { Component: Page, pageProps, router } = this.props;
 
     return (
       <FirebaseProvider>
-        <Page {...pageProps}></Page>
+        <Page {...pageProps} pathName={router.pathname}></Page>
       </FirebaseProvider>
     );
   }

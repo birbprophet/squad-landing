@@ -2,23 +2,20 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Div100vh from "react-div-100vh";
 import { useMediaQuery } from "react-responsive";
-import { FiMail } from "react-icons/fi";
+import { FiMail, FiChevronDown } from "react-icons/fi";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 import LazyLoad, { forceCheck } from "react-lazyload";
 import { motion } from "framer-motion";
-import { ReactTypeformEmbed } from "react-typeform-embed";
 
 import IndexHeader from "../components/IndexHeader";
+import TopBar from "../components/TopBar";
+import IndexHeroSection from "../components/IndexHeroSection";
 
 const MAILCHIMP_URL =
   "https://fitness.us4.list-manage.com/subscribe/post?u=50e805064958502d88ae939bc&id=36c73f6366";
 
-const Home = () => {
-  const [state, setState] = useState({
-    userEmail: "",
-    showEmailError: false,
-    typeformOpen: false
-  });
+const Home = props => {
+  const { pathName } = props;
 
   const isXs = useMediaQuery({ maxWidth: 480 });
   const isSm = useMediaQuery({ maxWidth: 640 });
@@ -26,230 +23,19 @@ const Home = () => {
   const isLg = useMediaQuery({ maxWidth: 1024 });
   const isXl = useMediaQuery({ maxWidth: 1280 });
 
-  const buttonRef = useRef(null);
-
   forceCheck();
-
-  const handleUserEmailOnChange = e => {
-    setState({ ...state, userEmail: e.target.value });
-  };
-
-  const emailIsValid = state.userEmail.match(
-    /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]+$/i
-  );
-
-  const handleGetStartedOnClick = () => {
-    window.analytics.identify(state.userEmail, {
-      clickedTypeform: true
-    });
-    if (!emailIsValid) {
-      setState({ ...state, showEmailError: true });
-    } else {
-      setState({ ...state, typeformOpen: true });
-    }
-  };
-
-  const handleTypeformOnSubmit = () => {
-    window.analytics.identify(state.userEmail, {
-      completedTypeform: true
-    });
-  };
-
-  useEffect(() => {
-    if (window !== undefined) {
-      window.analytics.page("Index");
-    }
-  }, []);
-
-  useEffect(() => {
-    if (emailIsValid && state.showEmailError) {
-      setState({ ...state, showEmailError: false });
-    }
-  }, [emailIsValid, state.showEmailError]);
-
-  useEffect(() => {
-    if (state.typeformOpen) {
-      buttonRef.current.typeform.open();
-    }
-  }, [state.typeformOpen]);
 
   return (
     <>
       <IndexHeader siteTitle="Squad - Find people to work out together" />
-      {state.typeformOpen && (
-        <ReactTypeformEmbed
-          url={`https://ben964525.typeform.com/to/WCdkMd?email=${state.userEmail}&source=mainsite`}
-          popup
-          hideHeaders
-          hideFooter
-          mode="popup"
-          onSubmit={handleTypeformOnSubmit}
-          ref={buttonRef}
-        />
-      )}
+
       <Div100vh>
+        <div className="absolute text-xs top-0">
+          {isXs ? "XS" : isSm ? "SM" : isMd ? "MD" : isLg ? "LG" : "XL"}
+        </div>
         <div className="flex flex-col h-full">
-          <div id="topbar" className="flex px-8 py-4">
-            <div
-              className="
-              text-2xl font-black font-title
-              sm:text-3xl
-            "
-            >
-              <motion.div
-                whileHover={{
-                  color: "#2B6CB0",
-                  borderColor: "#2B6CB0"
-                }}
-                whileTap={{
-                  color: "#2B6CB0",
-                  borderColor: "#2B6CB0"
-                }}
-              >
-                <Link href="/">
-                  <a>squad</a>
-                </Link>
-              </motion.div>
-            </div>
-            <div className="flex-1" />
-            {/* <div>
-              {isXs ? "XS" : isSm ? "SM" : isMd ? "MD" : isLg ? "LG" : "XL"}
-            </div> */}
-          </div>
-          <div className="h-full flex flex-col">
-            <div className="flex-1 flex">
-              <div
-                id="title-section"
-                className="m-auto flex max-w-full items-center"
-              >
-                <div className="flex flex-col flex-1">
-                  <div
-                    id="title"
-                    className="
-                    font-title font-extrabold 
-                    text-5xl text-center leading-none
-                    sm:text-6xl
-                    md:text-5xl
-                    lg:text-6xl
-                    "
-                  >
-                    <div>Find people</div>
-                    <div className="mt-1">to work out</div>
-                    <div className="mt-1 text-blue-700">
-                      <motion.span
-                        className="border-b-8 border-white cursor-default"
-                        whileHover={{
-                          color: "#3182CE",
-                          borderColor: "#3182CE"
-                        }}
-                        whileTap={{
-                          color: "#3182CE",
-                          borderColor: "#3182CE"
-                        }}
-                      >
-                        together
-                      </motion.span>
-                    </div>
-                  </div>
-                  <p
-                    id="subtitle"
-                    className="
-                    text-lg mt-8 text-center 
-                    sm:text-xl
-                    md:mt-8 md:text-lg
-                    lg:text-2xl"
-                  >
-                    Organising activities is hard — so don't.
-                    <br />
-                    Choose your activity & preferred crowd, <br />
-                    then leave the rest to us.
-                  </p>
-                  <div className="mt-8 mb-12 w-full">
-                    <input
-                      type="email"
-                      placeholder="Your email address"
-                      className="
-                      border-2 border-black pt-3 pb-2 rounded-lg w-full text-lg text-center focus:outline-none focus:border-blue-700 focus:placeholder-blue-200
-                      "
-                      onChange={handleUserEmailOnChange}
-                      value={state.userEmail}
-                    />
-                    <div className="mt-4">
-                      <motion.button
-                        className="
-                        bg-blue-700 text-white font-extrabold pt-3 pb-2 rounded-lg w-full text-lg text-center focus:outline-none
-                        "
-                        whileHover={{
-                          backgroundColor: "#3182CE"
-                        }}
-                        whileTap={{
-                          backgroundColor: "#000"
-                        }}
-                        onClick={handleGetStartedOnClick}
-                      >
-                        Get Started
-                      </motion.button>
-                    </div>
-                    <div className="mt-6 text-red-700 text-sm text-center h-8">
-                      {state.showEmailError ? (
-                        <>Oops, you might have a typo there...</>
-                      ) : (
-                        <>&nbsp;</>
-                      )}
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="hidden md:flex lg:hidden flex-col items-center"
-                  style={{
-                    marginRight: "-7.5%",
-                    paddingLeft: "5%",
-                    marginBottom: "10%",
-                    marginLeft: "5%"
-                  }}
-                >
-                  <LazyLoad height={400}>
-                    <motion.div
-                      whileHover={{
-                        scale: 1.05
-                      }}
-                    >
-                      <img
-                        src={require("../public/assets/images/squad-yuqing-find-out.png?resize&size=400")}
-                      />
-                    </motion.div>
-                  </LazyLoad>
-                  <div className="text text-gray-500">
-                    Find out how you can do the same
-                  </div>
-                </div>
-                <div
-                  className="hidden lg:flex flex-col items-center"
-                  style={{
-                    marginRight: "-7.5%",
-                    paddingLeft: "5%",
-                    marginBottom: "10%",
-                    marginLeft: "5%"
-                  }}
-                >
-                  <LazyLoad height={450}>
-                    <motion.div
-                      whileHover={{
-                        scale: 1.05
-                      }}
-                    >
-                      <img
-                        src={require("../public/assets/images/squad-yuqing-find-out.png?resize&size=450")}
-                      />
-                    </motion.div>
-                  </LazyLoad>
-                  <div className="text text-gray-500">
-                    Find out how you can do the same
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <TopBar pathName={pathName} />
+          <IndexHeroSection />
         </div>
       </Div100vh>
       <div className="flex flex-col md:hidden items-center m-auto pt-8 pb-12">
