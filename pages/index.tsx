@@ -30,9 +30,9 @@ const Home = props => {
       <IndexHeader siteTitle="Squad - Find people to work out together" />
 
       <Div100vh>
-        <div className="absolute text-xs top-0">
+        {/* <div className="absolute text-xs top-0">
           {isXs ? "XS" : isSm ? "SM" : isMd ? "MD" : isLg ? "LG" : "XL"}
-        </div>
+        </div> */}
         <div className="flex flex-col h-full">
           <TopBar pathName={pathName} />
           <IndexHeroSection />
