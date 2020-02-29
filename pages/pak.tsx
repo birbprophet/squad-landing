@@ -89,7 +89,7 @@ const Home = props => {
                         <p className="text-base leading-6 text-gray-500">
                           You can download the video{" "}
                           <a
-                            href="/assets/documents/2_min_intro.mp4"
+                            href="https://squad-fitness.s3-ap-southeast-1.amazonaws.com/2_min_intro.mp4"
                             className="font-bold"
                             target="_blank"
                           >
