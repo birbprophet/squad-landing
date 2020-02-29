@@ -5,10 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "build:styles": "postcss css/tailwind.css -o css/index.css"
+    "start": "next start"
   },
   "dependencies": {
+    "@tailwindcss/ui": "^0.1.2",
     "@typeform/embed": "^0.16.0",
     "firebase": "^7.8.2",
     "framer-motion": "^1.8.4",
@@ -16,14 +16,14 @@
     "react": "16.12.0",
     "react-div-100vh": "^0.3.8",
     "react-dom": "16.12.0",
-    "react-icons": "^3.9.0",
     "react-lazyload": "^2.6.5",
     "react-mailchimp-subscribe": "^2.1.0",
     "react-responsive": "^8.0.3",
     "react-typeform-embed": "^0.2.1",
     "tailwindcss": "^1.2.0",
     "typeface-hind": "0.0.72",
-    "typeface-montserrat": "0.0.75"
+    "typeface-montserrat": "0.0.75",
+    "unstated-next": "^1.1.0"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.0.6",

@@ -28,9 +28,7 @@ const Home = props => {
         {/* <MediaQueryHint /> */}
         <div className="relative pt-6 pb-16 md:pb-20 lg:pb-24 xl:pb-32">
           <TopBar pathName={pathName} />
-          <IndexHero />
         </div>
-        <IndexImageFeature />
         <IndexFeaturesSection />
         <CallToAction />
         <SiteFooter />

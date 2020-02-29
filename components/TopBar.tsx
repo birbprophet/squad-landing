@@ -1,43 +1,175 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 
-import { FiChevronDown } from "react-icons/fi";
 import { motion } from "framer-motion";
+import colorScheme from "../colorScheme";
 
 const TopBar = props => {
   const { pathName } = props;
-  const [state, setState] = useState({ openedMenu: null });
+  const [state, setState] = useState({
+    menuOpen: false
+  });
 
+  const toggleMenuOpen = () => {
+    setState({ ...state, menuOpen: !state.menuOpen });
+  };
   return (
-    <div id="topbar" className="flex px-8 py-4 items-center">
-      <MenuLogo />
-      <div className="flex-1" />
-      <div className="items-center hidden md:flex md:mt-2">
-        <MenuItemWithSubmenu
-          label="Why Squad?"
-          state={state}
-          setState={setState}
-        >
-          <SubmenuItem label="How it works" linkHref="/why" />
-          <SubmenuItem label="Solutions" linkHref="/why#solutions" />
-          <SubmenuItem label="Privacy" linkHref="/why#safety" />
-        </MenuItemWithSubmenu>
-        <MenuItemWithSubmenu label="Partners" state={state} setState={setState}>
-          <SubmenuItem label="Our partners" linkHref="/partner" />
-          <SubmenuItem label="Become a partner" linkHref="/partner#join" />
-        </MenuItemWithSubmenu>
-        <BasicMenuItem label="Blog" linkHref="/blog" pathName={pathName} />
-        <BasicMenuItem label="Login" linkHref="/login" pathName={pathName} />
-        <MenuMainButton label="Sign Up" linkHref="/signup" />
+    <>
+      <nav className="relative max-w-screen-xl mx-auto flex items-center justify-between px-4 sm:px-6 w-full">
+        <div className="flex items-center flex-1">
+          <div className="flex items-center justify-between w-full md:w-auto">
+            <MenuLogo />
+            <div className="w-0 lg:w-6" />
+            <MobileMenuButton toggleMenuOpen={toggleMenuOpen} />
+          </div>
+          <MenuItems pathName={pathName} />
+        </div>
+
+        <div className="hidden md:block text-right">
+          <MenuMainButton label="Sign Up" hrefLink="/signup" />
+        </div>
+      </nav>
+      <div
+        className={
+          "absolute top-0 inset-x-0 p-2 md:hidden  " +
+          (state.menuOpen ? "block" : "hidden")
+        }
+      >
+        <div className="rounded-lg shadow-md transition transform origin-top-right">
+          <div className="rounded-lg bg-white shadow-xs overflow-hidden">
+            <div className="px-5 pt-4 flex items-center justify-between">
+              <div>
+                <span className="font-title font-black text-2xl">SQUAD</span>
+              </div>
+              <div className="-mr-2">
+                <button
+                  onClick={toggleMenuOpen}
+                  type="button"
+                  className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+                >
+                  <svg
+                    className="h-6 w-6"
+                    stroke="currentColor"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div className="px-2 pt-2 pb-3">
+              <MenuItem
+                label="Why Squad?"
+                hrefLink="/why"
+                pathName={pathName}
+                mobileItem
+              />
+              <MenuItem
+                label="Features"
+                hrefLink="/features"
+                pathName={pathName}
+                mobileItem
+              />
+              <MenuItem
+                label="Partners"
+                hrefLink="/partners"
+                pathName={pathName}
+                mobileItem
+              />
+              <MenuItem
+                label="About Us"
+                hrefLink="/about"
+                pathName={pathName}
+                mobileItem
+              />
+            </div>
+            <div>
+              <MenuMainButton label="Sign Up" hrefLink="/signup" mobileItem />
+            </div>
+          </div>
+        </div>
       </div>
+    </>
+  );
+};
+
+const MobileMenuButton = props => {
+  const { toggleMenuOpen } = props;
+  return (
+    <div className="-mr-2 flex items-center md:hidden">
+      <button
+        onClick={toggleMenuOpen}
+        type="button"
+        className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+      >
+        <svg
+          className="h-6 w-6"
+          stroke="currentColor"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
+    </div>
+  );
+};
+
+const MenuItems = props => {
+  const { pathName } = props;
+  return (
+    <div className="hidden md:flex md:ml-10 items-center h-full mt-2">
+      <div className="mr-2">
+        <MenuItem label="Why Squad?" hrefLink="/why" pathName={pathName} />
+      </div>
+      <MenuItem label="Partners" hrefLink="/partners" pathName={pathName} />
+      <MenuItem label="About Us" hrefLink="/about" pathName={pathName} />
+      <MenuItem label="FAQs" hrefLink="/faqs" pathName={pathName} />
+    </div>
+  );
+};
+
+const MenuItem = props => {
+  const { label, hrefLink, pathName, mobileItem } = props;
+  if (mobileItem) {
+    return (
+      <Link href={hrefLink}>
+        <a className="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">
+          {label}
+        </a>
+      </Link>
+    );
+  }
+  return (
+    <div className="w-28 text-center">
+      <Link href={hrefLink}>
+        <a
+          className={
+            "font-medium pb-1 border-b-2 focus:outline-none focus:text-primary-700 focus:border-primary-700 focus:font-bold hover:text-primary-700 hover:border-primary-700 hover:font-bold transition duration-200 ease-in-out " +
+            (pathName.startsWith(hrefLink)
+              ? "text-primary-700 border-primary-700"
+              : "text-gray-500 border-white")
+          }
+        >
+          {label}
+        </a>
+      </Link>
     </div>
   );
 };
 
 const MenuLogo = () => {
-  const handleMenuItemOnClick = () => {
-    window.analytics.track("Menu Logo Clicked");
-  };
   return (
     <div
       className="
@@ -47,176 +179,45 @@ const MenuLogo = () => {
     >
       <motion.div
         whileHover={{
-          color: "#2B6CB0",
-          borderColor: "#2B6CB0"
+          color: colorScheme["primary-700"],
+          borderColor: colorScheme["primary-700"]
         }}
         whileTap={{
-          color: "#2B6CB0",
-          borderColor: "#2B6CB0"
+          color: colorScheme["primary-700"],
+          borderColor: colorScheme["primary-700"]
         }}
-        onClick={handleMenuItemOnClick}
       >
         <Link href="/">
-          <a>squad</a>
+          <a>SQUAD</a>
         </Link>
       </motion.div>
     </div>
   );
 };
 
-const BasicMenuItem = props => {
-  const { label, linkHref, pathName } = props;
-  const handleMenuItemOnClick = () => {
-    window.analytics.track("Menu Item Clicked", {
-      label
-    });
-  };
-
-  return (
-    <Link href={linkHref}>
-      <motion.button
-        whileHover={{
-          color: "#2B6CB0"
-        }}
-        className="ml-6 font-semibold flex items-center"
-        onClick={handleMenuItemOnClick}
-      >
-        <motion.span
-          className={
-            "border-b-2 mt-1 " +
-            (pathName.startsWith(linkHref) ? "border-blue-700" : "border-white")
-          }
-          whileHover={{
-            borderColor: "#2B6CB0"
-          }}
-        >
-          {label}
-        </motion.span>
-      </motion.button>
-    </Link>
-  );
-};
-
-const MenuItemWithSubmenu = props => {
-  const { label, children, state, setState } = props;
-  const handleMenuItemOnClick = () => {
-    window.analytics.track("Submenu Item Clicked", {
-      label
-    });
-    if (state.openedMenu !== label) {
-      setState({ ...state, openedMenu: label });
-    } else {
-      setState({ ...state, openedMenu: null });
-    }
-  };
-
-  return (
-    <div className="flex flex-col items-center">
-      <motion.button
-        whileHover={{
-          color: "#2B6CB0"
-        }}
-        className="ml-6 font-semibold flex items-center"
-        onClick={() => handleMenuItemOnClick()}
-      >
-        <motion.span
-          className="border-b-2 border-white mt-1"
-          whileHover={{
-            borderColor: "#2B6CB0"
-          }}
-        >
-          {label}
-        </motion.span>
-        &nbsp;
-        <motion.div
-          className="inline"
-          animate={state.openedMenu === label ? "selected" : "unselected"}
-          variants={{
-            unselected: {
-              rotate: "0deg",
-              marginBottom: 0,
-              marginTop: "10px"
-            },
-            selected: {
-              rotate: "180deg",
-              marginBottom: "10px",
-              marginTop: 0
-            }
-          }}
-        >
-          <FiChevronDown size={20} style={{ marginBottom: 2 }} />
-        </motion.div>
-      </motion.button>
-      <motion.div
-        animate={state.openedMenu === label ? "selected" : "unselected"}
-        variants={{
-          unselected: {
-            opacity: "0",
-            color: "#fff",
-            borderColor: "#fff"
-          },
-          selected: {
-            opacity: "1",
-            color: "#000",
-            borderColor: "#000"
-          }
-        }}
-        className="absolute m-auto w-48 mt-20 flex rounded-lg top-0 border-2 border-black"
-      >
-        <div className="m-auto flex flex-col py-4 text-center">{children}</div>
-      </motion.div>
-    </div>
-  );
-};
-
-const SubmenuItem = props => {
-  const { label, linkHref } = props;
-  const handleMenuItemOnClick = () => {
-    window.analytics.track("Submenu Item Clicked", {
-      label
-    });
-  };
-
-  return (
-    <Link href={linkHref}>
-      <motion.button
-        whileHover={{
-          color: "#2B6CB0"
-        }}
-        className="py-1 hover:font-semibold"
-        onClick={handleMenuItemOnClick}
-      >
-        <motion.span
-          className="border-b-2 border-white mt-1"
-          whileHover={{
-            borderColor: "#2B6CB0"
-          }}
-        >
-          {label}
-        </motion.span>
-      </motion.button>
-    </Link>
-  );
-};
-
 const MenuMainButton = props => {
-  const { label, linkHref } = props;
-  const handleMenuItemOnClick = () => {
-    window.analytics.track("Menu Main Button Clicked", {
-      label
-    });
-  };
+  const { label, hrefLink, mobileItem } = props;
+
+  if (mobileItem) {
+    return (
+      <Link href={hrefLink}>
+        <a className="block w-full px-5 py-3 text-center font-bold text-primary-600 bg-gray-50 hover:bg-gray-100 hover:text-indigo-700 focus:outline-none focus:bg-gray-100 focus:text-indigo-700 transition duration-150 ease-in-out">
+          {label}
+        </a>
+      </Link>
+    );
+  }
+
   return (
-    <Link href={linkHref}>
+    <Link href={hrefLink}>
       <motion.button
-        className="bg-blue-700 border-blue-700 border-2 text-white font-extrabold py-2 px-4 rounded-lg text-center focus:outline-none ml-10"
-        onClick={handleMenuItemOnClick}
+        className="bg-primary-700 border-primary-700 border-2 text-white font-extrabold py-2 px-4 rounded-lg text-center focus:outline-none ml-10 w-24"
         whileHover={{
-          color: "#2B6CB0",
+          color: colorScheme["primary-700"],
           backgroundColor: "#FFF"
         }}
         whileTap={{
-          color: "#2B6CB0",
+          color: colorScheme["primary-700"],
           backgroundColor: "#FFF"
         }}
       >
