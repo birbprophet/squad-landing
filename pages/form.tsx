@@ -1,7 +1,9 @@
 import React from "react";
 import Head from "next/head";
+import { EmailContainer } from "../scripts/EmailContainer";
 
 const Home = () => {
+  const { email } = EmailContainer.useContainer();
   return (
     <>
       <Head>
@@ -40,7 +42,7 @@ const Home = () => {
         width="100%"
         height="100%"
         frameBorder="0"
-        src="https://ben964525.typeform.com/to/WCdkMd"
+        src={`https://ben964525.typeform.com/to/WCdkMd?source=landing&email=${email}`}
       ></iframe>
       <script
         type="text/javascript"

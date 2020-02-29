@@ -26,7 +26,7 @@ const TopBar = props => {
         </div>
 
         <div className="hidden md:block text-right">
-          <MenuMainButton label="Sign Up" hrefLink="/signup" />
+          <MenuMainButton label="Sign Up" hrefLink="/form" />
         </div>
       </nav>
       <div
@@ -90,7 +90,7 @@ const TopBar = props => {
               />
             </div>
             <div>
-              <MenuMainButton label="Sign Up" hrefLink="/signup" mobileItem />
+              <MenuMainButton label="Sign Up" hrefLink="/form" mobileItem />
             </div>
           </div>
         </div>
