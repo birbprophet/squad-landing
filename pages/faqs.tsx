@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 
 import TopBar from "../components/TopBar";
 import CallToAction from "../components/CallToAction";
@@ -27,39 +28,36 @@ const FaqsPage = props => {
                 <div>
                   <div>
                     <dt className="text-lg leading-6 font-medium text-gray-900">
-                      Would my chat conversation be recorded by the bot? Would
-                      we be able to disable the bot?
+                      When is Squad launching?
                     </dt>
                     <dd className="mt-2">
                       <p className="text-base leading-6 text-gray-500">
-                        I don't know, but the flag is a big plus. Lorem ipsum
-                        dolor sit amet consectetur adipisicing elit. Quas
-                        cupiditate laboriosam fugiat.
+                        Squad will be released on iOS App Store, Android Google
+                        Play Store, and as a standalone mobile web application
+                        in June 2020.
                       </p>
                     </dd>
                   </div>
                   <div className="mt-12">
                     <dt className="text-lg leading-6 font-medium text-gray-900">
-                      Would I be able to create a group chat with my existing
-                      friends?
+                      Can I join squads with existing friends
                     </dt>
                     <dd className="mt-2">
                       <p className="text-base leading-6 text-gray-500">
-                        You boil the hell out of it. Lorem ipsum dolor sit amet
-                        consectetur adipisicing elit. Quas cupiditate laboriosam
-                        fugiat.
+                        Yes, you can add friends to your current party to search
+                        for squads together, similar to how matchmaking in
+                        online games work.
                       </p>
                     </dd>
                   </div>
                   <div className="mt-12">
                     <dt className="text-lg leading-6 font-medium text-gray-900">
-                      Can I report abusive users? What would happen when I
-                      report them?
+                      Can I report abusive users?
                     </dt>
                     <dd className="mt-2">
                       <p className="text-base leading-6 text-gray-500">
-                        Nobody knows. Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Quas cupiditate laboriosam fugiat.
+                        Yes. We have a system in place for reporting abusive
+                        users by banning the phone number associated account.
                       </p>
                     </dd>
                   </div>
@@ -67,36 +65,46 @@ const FaqsPage = props => {
                 <div className="mt-12 md:mt-0">
                   <div>
                     <dt className="text-lg leading-6 font-medium text-gray-900">
-                      What is the least spoken language in the world?
+                      Why should I sign up early?
                     </dt>
                     <dd className="mt-2">
                       <p className="text-base leading-6 text-gray-500">
-                        Sign language. Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Quas cupiditate laboriosam fugiat.
+                        By{" "}
+                        <Link href="/form">
+                          <a>
+                            <u>signing up early</u>
+                          </a>
+                        </Link>
+                        , you can help us shape the app while we develop it.
+                        Early sign ups will also get invited to our exclusive
+                        launch party.
                       </p>
                     </dd>
                   </div>
                   <div className="mt-12">
                     <dt className="text-lg leading-6 font-medium text-gray-900">
-                      Why can't you hear a pterodactyl go to the bathroom?
+                      Is this a dating app?
                     </dt>
                     <dd className="mt-2">
                       <p className="text-base leading-6 text-gray-500">
-                        Because the pee is silent. Lorem ipsum dolor sit amet
-                        consectetur adipisicing elit. Quas cupiditate laboriosam
-                        fugiat.
+                        Squad helps people to connect and work out together, so
+                        it's possible that you might find a special connection
+                        with someone you met through Squad.
                       </p>
                     </dd>
                   </div>
                   <div className="mt-12">
                     <dt className="text-lg leading-6 font-medium text-gray-900">
-                      Why did the invisible man turn down the job offer?
+                      How can I find out more?
                     </dt>
                     <dd className="mt-2">
                       <p className="text-base leading-6 text-gray-500">
-                        He couldn't see himself doing it. Lorem ipsum dolor sit
-                        amet consectetur adipisicing elit. Quas cupiditate
-                        laboriosam fugiat.
+                        You can chat with us via the live chat bubble at the
+                        bottom right hand corner, or drop us an email at{" "}
+                        <a href="mailto:hello@squad.fitness">
+                          <u>hello@squad.fitness</u>
+                        </a>
+                        .
                       </p>
                     </dd>
                   </div>
