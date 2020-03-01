@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const CallToAction = () => {
   return (
     <div className="bg-gray-50">
@@ -9,20 +11,18 @@ const CallToAction = () => {
         </h2>
         <div className="mt-8 flex lg:flex-shrink-0 lg:mt-0">
           <div className="inline-flex rounded-md shadow">
-            <a
-              href="#"
-              className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-primary-600 hover:bg-primary-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
-            >
-              Get Started
-            </a>
+            <Link href="/form">
+              <a className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-primary-600 hover:bg-primary-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                Get Started
+              </a>
+            </Link>
           </div>
           <div className="ml-3 inline-flex rounded-md shadow">
-            <a
-              href="#"
-              className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-primary-600 bg-white hover:text-primary-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
-            >
-              Learn more
-            </a>
+            <Link href="/why">
+              <a className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-primary-600 bg-white hover:text-primary-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                Learn more
+              </a>
+            </Link>
           </div>
         </div>
       </div>
