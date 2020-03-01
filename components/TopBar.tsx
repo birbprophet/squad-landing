@@ -70,12 +70,12 @@ const TopBar = props => {
                 pathName={pathName}
                 mobileItem
               />
-              <MenuItem
+              {/* <MenuItem
                 label="Partners"
                 hrefLink="/partners"
                 pathName={pathName}
                 mobileItem
-              />
+              /> */}
               <MenuItem
                 label="About Us"
                 hrefLink="/about"
@@ -133,7 +133,7 @@ const MenuItems = props => {
       <div className="mr-2">
         <MenuItem label="Why Squad?" hrefLink="/why" pathName={pathName} />
       </div>
-      <MenuItem label="Partners" hrefLink="/partners" pathName={pathName} />
+      {/* <MenuItem label="Partners" hrefLink="/partners" pathName={pathName} /> */}
       <MenuItem label="About Us" hrefLink="/about" pathName={pathName} />
       <MenuItem label="FAQs" hrefLink="/faqs" pathName={pathName} />
     </div>

@@ -35,7 +35,7 @@ const Home = props => {
               </div>
             </div>
           </div>
-          <div className="mt-8 pb-12 bg-gray-50 sm:mt-12 sm:pb-16 lg:mt-16 lg:pb-24">
+          <div className="mt-8 pb-12 bg-white sm:mt-12 sm:pb-16 lg:mt-16 lg:pb-24">
             <div className="relative">
               <div className="absolute inset-0 h-3/4 bg-primary-700" />
               <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -129,28 +129,33 @@ const Home = props => {
                 </div>
               </div>
             </div>
-            <div className="mt-12 relative max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 lg:mt-16">
-              <div className="max-w-md mx-auto lg:max-w-5xl">
-                <div className="rounded-lg bg-gray-100 px-6 py-8 sm:p-10 lg:flex lg:items-center">
-                  <div className="flex-1">
-                    <div className="text-lg font-medium">
-                      Are you an investor?
-                    </div>
-                    <div className="mt-4 text-lg leading-7 text-gray-500">
-                      Squad is looking to raise seed funding to market our app
-                      in Singapore and beyond. Check out our investors page for
-                      more details.
-                    </div>
-                  </div>
-                  <div className="mt-6 rounded-md shadow lg:mt-0 lg:ml-10 lg:flex-shrink-0">
-                    <Link href="/investors">
-                      <a className="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-gray-900 bg-white hover:text-gray-700 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-                        Visit Investors Page
-                      </a>
-                    </Link>
-                  </div>
-                </div>
-              </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-gray-50">
+        <div className="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+          <h2 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
+            Interested?
+            <br />
+            <span className="text-primary-600">
+              We'd love to tell you more.
+            </span>
+          </h2>
+          <div className="mt-8 flex lg:flex-shrink-0 lg:mt-0">
+            <div className="inline-flex rounded-md shadow">
+              <a
+                href="mailto:hello@squad.fitness"
+                className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-primary-600 hover:bg-primary-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
+              >
+                Email Us
+              </a>
+            </div>
+            <div className="ml-3 inline-flex rounded-md shadow">
+              <Link href="/contact">
+                <a className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-primary-600 bg-white hover:text-primary-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                  Contact Info
+                </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -165,13 +170,38 @@ const AboutTopSection = () => (
   <div className="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
     <div className="sm:text-center lg:text-left">
       <h2 className="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl font-title">
-        We are a startup <br className="" />
-        from <span className="text-primary-700">Singapore</span>
+        We are looking for
+        <br className="" />
+        <span className="text-primary-700">seed investors</span>
       </h2>
       <p className="mt-6 text-base text-gray-500 sm:mt-10 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-10 md:text-xl lg:mx-0">
         Squad was founded by Benjamin & Yuqing on 22nd February 2020 over a
         post-workout coffee chat. Since then, we have been working tirelessly on
         our app development and marketing plan.
+        <br />
+        <br />
+        We are currently looking for seed investment. Seed investment would
+        allow us to work on Squad full-time, and would give us more resources to
+        market our app to users.
+        <br />
+        <br />
+        More information can be found in our latest pitch deck{" "}
+        <a
+          href="/assets/documents/squad_deck.pdf"
+          className="font-bold"
+          target="_blank"
+        >
+          <u>here</u>
+        </a>
+        . You can also reach us via email at{" "}
+        <a
+          href="mailto:hello@squad.fitness"
+          className="font-bold"
+          target="_blank"
+        >
+          <u>hello@squad.fitness</u>
+        </a>
+        .
       </p>
     </div>
   </div>

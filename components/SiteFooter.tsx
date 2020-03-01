@@ -60,9 +60,23 @@ const SiteFooter = () => {
                     </Link>
                   </li>
                   <li className="mt-4">
+                    <Link href="/investors">
+                      <a className="text-base leading-6 text-gray-500 hover:text-gray-900">
+                        Investors
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="mt-4">
                     <Link href="/pak">
                       <a className="text-base leading-6 text-gray-500 hover:text-gray-900">
                         PAK
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="mt-4">
+                    <Link href="/contact">
+                      <a className="text-base leading-6 text-gray-500 hover:text-gray-900">
+                        Contact
                       </a>
                     </Link>
                   </li>
