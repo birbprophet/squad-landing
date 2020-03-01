@@ -71,12 +71,6 @@ const TopBar = props => {
                 mobileItem
               />
               <MenuItem
-                label="Features"
-                hrefLink="/features"
-                pathName={pathName}
-                mobileItem
-              />
-              <MenuItem
                 label="Partners"
                 hrefLink="/partners"
                 pathName={pathName}
