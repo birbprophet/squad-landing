@@ -82,6 +82,12 @@ const TopBar = props => {
                 pathName={pathName}
                 mobileItem
               />
+              <MenuItem
+                label="FAQs"
+                hrefLink="/faqs"
+                pathName={pathName}
+                mobileItem
+              />
             </div>
             <div>
               <MenuMainButton label="Sign Up" hrefLink="/form" mobileItem />
