@@ -187,7 +187,7 @@ const AboutTopSection = () => (
         <br />
         More information can be found in our latest pitch deck{" "}
         <a
-          href="/assets/documents/squad_deck.pdf"
+          href="/assets/documents/squad_deck_29022020.pdf"
           className="font-bold"
           target="_blank"
         >
