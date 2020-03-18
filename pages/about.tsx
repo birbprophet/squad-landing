@@ -50,7 +50,7 @@ const Home = props => {
                           alt="Yuqing uses Squad"
                         />
                       </div>
-                      <div className="mt-8 text-6xl leading-none font-extrabold text-center font-title">
+                      <div className="mt-8 text-2xl md:text-6xl leading-none font-extrabold text-center font-title">
                         Yuqing
                         <br />
                         Zhao
@@ -93,7 +93,7 @@ const Home = props => {
                         />
                       </div>
 
-                      <div className="mt-8 text-6xl leading-none font-extrabold text-center font-title">
+                      <div className="mt-8 text-2xl md:text-6xl leading-none font-extrabold text-center font-title">
                         Benjamin
                         <br />
                         Tang
