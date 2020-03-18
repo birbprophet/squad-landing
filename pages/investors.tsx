@@ -64,7 +64,7 @@ const Home = props => {
                         With over 240,000 followers on Instagram, Yuqing ranks
                         among one of the top lifestyle and fitness influencers
                         in Singapore. She has worked with well known fitness
-                        brands such as Puma, Sketchers, ClassPass, and many
+                        brands such as Puma, Under Armour, ClassPass, and many
                         others. She is also a rising content creator on YouTube.
                         <br />
                         <br />
