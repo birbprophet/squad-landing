@@ -18,7 +18,7 @@ const IndexHero = () => {
           <div className="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
             <div className="mt-4 sm:mt-10 lg:mt-28 mb-2">
               <div className="font-semibold uppercase tracking-wide text-gray-500 text-center">
-                Launching June 2020
+                Launching 2021
               </div>
             </div>
             <h2
